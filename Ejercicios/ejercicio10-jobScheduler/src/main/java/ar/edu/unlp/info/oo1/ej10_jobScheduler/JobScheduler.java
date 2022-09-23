@@ -36,6 +36,7 @@ public class JobScheduler {
     }
     
     public JobDescription next() {
+    	
     	JobDescription nextJob = null;
     	
     	switch (strategy) {
@@ -50,20 +51,14 @@ public class JobScheduler {
         	return nextJob;
 
     	case "HighestPriority": 
-    		nextJob = jobs.stream()
-				.max((j1,j2) -> Double.compare(j1.getPriority(), j2.getPriority()))
-				.orElse(null);
+    		nextJob = jobs.stream().max((j1,j2) -> Double.compare(j1.getPriority(), j2.getPriority())).orElse(null);
         	this.unschedule(nextJob);
         	return nextJob;
         	
     	case "MostEffort":
-		     nextJob = jobs.stream()
-     			.max((j1,j2) -> Double.compare(j1.getEffort(), j2.getEffort()))
-     			.orElse(null);
+		     nextJob = jobs.stream().max((j1,j2) -> Double.compare(j1.getEffort(), j2.getEffort())).orElse(null);
 		    this.unschedule(nextJob);
 		    return nextJob;
-
- 	
     	}
       	return null;
     }

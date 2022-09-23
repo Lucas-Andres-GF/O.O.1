@@ -7,13 +7,15 @@ import org.junit.jupiter.api.Test;
 
 class CajaDeAhorroTest {
 
-	private CajaDeAhorro cajaDeAhorro; 
-	private CajaDeAhorro cajaDeAhorro2; 
+	private Cuenta cajaDeAhorro; 
+	private Cuenta cajaDeAhorro2; 
+	private Cuenta cuentaCorriente; 
 	
 	@BeforeEach
 	void setUp() throws Exception {
 		cajaDeAhorro = new CajaDeAhorro(); 
 		cajaDeAhorro2 = new CajaDeAhorro(); 
+		cuentaCorriente = new CuentaCorriente(); 
 	}
 
 	@Test
@@ -30,18 +32,24 @@ class CajaDeAhorroTest {
 	@Test
 	void testExtraer() {
 		cajaDeAhorro.depositar(500);
-		cajaDeAhorro.extraerDinero(450);
+		cajaDeAhorro.extraer(450);
 		assertEquals(31, cajaDeAhorro.getSaldo());
 	}
 	
 	@Test
-	void testTranferir() {
+	void testTransferir() {
 		cajaDeAhorro.depositar(1000);
-		cajaDeAhorro.transferirDinero(500, cajaDeAhorro2);
-		System.out.println(cajaDeAhorro.getSaldo());
-		System.out.println(cajaDeAhorro2.getSaldo());
-//		assertEquals(480, cajaDeAhorro.getSaldo());
-//		assertEquals(490, cajaDeAhorro2.getSaldo());
+		cajaDeAhorro.transferirACuenta(500,cajaDeAhorro2);
+		assertEquals(470, cajaDeAhorro.getSaldo());
+		assertEquals(490, cajaDeAhorro2.getSaldo());
+	}
+	
+	@Test
+	void testTransferir2() {
+		cajaDeAhorro.depositar(1000);
+		cajaDeAhorro.transferirACuenta(500,cuentaCorriente); 
+		assertEquals(470, cajaDeAhorro.getSaldo());
+		assertEquals(500, cuentaCorriente.getSaldo());
 	}
 	
 }

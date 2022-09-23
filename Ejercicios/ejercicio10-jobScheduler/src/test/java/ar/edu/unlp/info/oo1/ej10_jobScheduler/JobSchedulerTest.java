@@ -16,12 +16,10 @@ public class JobSchedulerTest {
   
     
     private void initializeJobs() {
-    	
     	firstJob = new JobDescription (1, 1, "Este es el primero");
     	highestPriorityJob = new JobDescription (1, 100, "Este es el de m�s prioridad");
     	mostEffortJob = new JobDescription (100, 1, "Este es el de m�s esfuerzo");
     	lastJob = new JobDescription (1, 1, "Este es el �ltimo");
-    	
     }
     
     @BeforeEach

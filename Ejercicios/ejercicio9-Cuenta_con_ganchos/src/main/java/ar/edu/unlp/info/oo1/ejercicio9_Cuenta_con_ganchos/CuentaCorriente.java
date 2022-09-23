@@ -14,7 +14,7 @@ public class CuentaCorriente extends Cuenta {
 	}
 	
 	public double getLimiteDescubierto() {
-		return limiteDescubierto;
+		return this.limiteDescubierto;
 	}
 
 	public void setLimiteDescubierto(double limiteDescubierto) {

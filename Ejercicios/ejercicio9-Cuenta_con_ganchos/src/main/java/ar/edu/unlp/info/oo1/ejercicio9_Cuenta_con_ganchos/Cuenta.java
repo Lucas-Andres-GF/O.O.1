@@ -15,13 +15,13 @@ public abstract class Cuenta {
 		this.saldo += monto; 
 	}
 	
-	public void extraerSinCotrolar(double monto) {
+	public void extraerSinControlar(double monto) {
 		this.saldo -= monto; 
 	}
 	
 	public boolean extraer (double monto) {
 		if (this.puedeExtraer(monto)) {
-			this.extraerSinCotrolar(monto); 
+			this.extraerSinControlar(monto); 
 			return true; 
 		}
 		return false; 
@@ -29,7 +29,7 @@ public abstract class Cuenta {
 	
 	public boolean transferirACuenta(double monto, Cuenta cuentaDestino) {
 		if (this.puedeExtraer(monto)) {
-			this.extraerSinCotrolar(monto);
+			this.extraerSinControlar(monto);
 			cuentaDestino.depositar(monto);
 			return true; 
 		}

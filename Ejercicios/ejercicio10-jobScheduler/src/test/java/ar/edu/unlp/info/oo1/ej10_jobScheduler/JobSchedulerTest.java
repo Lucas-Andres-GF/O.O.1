@@ -1,12 +1,8 @@
 package ar.edu.unlp.info.oo1.ej10_jobScheduler;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
 
 public class JobSchedulerTest {
     protected JobDescription firstJob;
@@ -27,27 +23,23 @@ public class JobSchedulerTest {
     	this.initializeJobs();
     } 
     
-    private JobScheduler newFifoScheduler() {
-    	JobScheduler fifoScheduler = new JobScheduler();
-    	fifoScheduler.setStrategy("FIFO");
+    private JobSchedulerFifo newFifoScheduler() {
+    	JobSchedulerFifo fifoScheduler = new JobSchedulerFifo();
     	return fifoScheduler;
     }
     
-    private JobScheduler newLifoScheduler() {
-    	JobScheduler lifoScheduler = new JobScheduler();
-    	lifoScheduler.setStrategy("LIFO");
+    private JobSchedulerLifo newLifoScheduler() {
+    	JobSchedulerLifo lifoScheduler = new JobSchedulerLifo();
     	return lifoScheduler;
     }
     
-    private JobScheduler newPriorityScheduler() {
-    	JobScheduler priorityScheduler = new JobScheduler();
-    	priorityScheduler.setStrategy("HighestPriority");
+    private JobSchedulerHighestPriority newPriorityScheduler() {
+        JobSchedulerHighestPriority priorityScheduler = new JobSchedulerHighestPriority();
     	return priorityScheduler;
     }
     
-    private JobScheduler newEffortScheduler() {
-    	JobScheduler effortScheduler = new JobScheduler();
-    	effortScheduler.setStrategy("MostEffort");
+    private JobSchedulerMostEffort newEffortScheduler() {
+        JobSchedulerMostEffort effortScheduler = new JobSchedulerMostEffort();
     	return effortScheduler;
     }
     
@@ -60,14 +52,14 @@ public class JobSchedulerTest {
     
     @Test
     void testSchedule() {
-    	JobScheduler aScheduler = new JobScheduler();
+    	JobScheduler aScheduler = new JobSchedulerLifo();
     	aScheduler.schedule(highestPriorityJob);
     	assertTrue(aScheduler.getJobs().contains(highestPriorityJob));
     } 
     
     @Test
     void testUnschedule() {
-    	JobScheduler aScheduler = new JobScheduler();
+    	JobScheduler aScheduler = new JobSchedulerLifo();
     	this.scheduleJobsIn(aScheduler);
     	aScheduler.unschedule(highestPriorityJob);
     	assertFalse(aScheduler.getJobs().contains(highestPriorityJob));   	
